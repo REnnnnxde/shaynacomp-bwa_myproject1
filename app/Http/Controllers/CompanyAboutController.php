@@ -13,6 +13,7 @@ class CompanyAboutController extends Controller
     public function index()
     {
         //
+        return('halaman index tampilkan About pada cms');
     }
 
     /**
