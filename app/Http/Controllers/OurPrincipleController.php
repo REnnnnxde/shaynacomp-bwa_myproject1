@@ -13,6 +13,10 @@ class OurPrincipleController extends Controller
     public function index()
     {
         //
+          
+        $principles = OurPrinciple::orderByDesc('id')->paginate(10);
+        return view('admin.principles.index', compact('principles'));
+   
     }
 
     /**
@@ -21,6 +25,7 @@ class OurPrincipleController extends Controller
     public function create()
     {
         //
+        return view('admin.principles.create');
     }
 
     /**

@@ -13,6 +13,10 @@ class OurTeamController extends Controller
     public function index()
     {
         //
+          
+        $teams = OurTeam::orderByDesc('id')->paginate(10);
+        return view('admin.teams.index', compact('teams'));
+   
     }
 
     /**
@@ -21,6 +25,7 @@ class OurTeamController extends Controller
     public function create()
     {
         //
+        return view('admin.teams.create');
     }
 
     /**

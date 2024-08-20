@@ -13,24 +13,26 @@ class CompanyStatisticController extends Controller
     public function index()
     {
         //
-        return('halaman index tampilkan data statistic pada cms');
+        
+        $statistics = CompanyStatistic::orderByDesc('id')->paginate(10);
+        return view('admin.statistics.index', compact('statistics'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
-    }
+{
+    // Mengembalikan view untuk form create
+    return view('admin.statistics.create');
+}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+public function store(Request $request)
+{
+    // Logika untuk menyimpan data statistik baru
+    // Validasi dan penyimpanan data ke database
+}
+
 
     /**
      * Display the specified resource.
