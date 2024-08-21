@@ -4,8 +4,8 @@
             <h2 class="font-semibold text-2xl text-gray-900 leading-tight">
                 {{ __('Manage Statistics') }}
             </h2>
-            <a href="{{ route('admin.statistics.create') }}" class="font-bold py-3 px-6 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full shadow-md transition duration-300 ease-in-out">
-                Add New
+            <a href="{{ route('admin.statistics.create') }}" class="font-bold py-3 px-6 bg-indigo-600 hover:bg-indigo-500 hover:scale-105 text-white rounded-full shadow-md transition duration-300 ease-in-out">
+                Add New Statistics
             </a>
         </div>
     </x-slot>

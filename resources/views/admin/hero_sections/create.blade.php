@@ -8,8 +8,15 @@
     <div class="py-12 bg-gray-100 min-h-screen">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg p-8 space-y-6">
-
-                <form method="POST" action=" " enctype="multipart/form-data">
+                
+                @if ($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="py-3 w-full rounded-3xl bg-red-500 text-white">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
+                <form method="POST" action="{{ route('admin.hero_sections.store') }} " enctype="multipart/form-data">
                     @csrf
 
                     <div>

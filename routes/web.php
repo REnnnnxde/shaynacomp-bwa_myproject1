@@ -101,6 +101,7 @@ Route::middleware('auth')->group(function () {
             Route::put('teams/{id}', [OurTeamController::class, 'update'])->name('teams.update');
             Route::delete('teams/{id}', [OurTeamController::class, 'destroy'])->name('teams.destroy');
         });
+        
 
         // Route untuk mengelola informasi 'About Us'
         Route::middleware('can:manage about')->group(function () {

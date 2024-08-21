@@ -9,13 +9,27 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg p-8 space-y-6">
 
-                <form method="POST" action=" " enctype="multipart/form-data">
-                    
+                @if ($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="py-3 w-full rounded-3xl bg-red-500 text-white">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
+
+                <form method="POST" action=" {{ route('admin.testimonials.store') }}" enctype="multipart/form-data">
+                    @csrf
                     <div>
                         <x-input-label for="project_client" :value="__('Project Client')" />
                         <select name="project_client_id" id="project_client_id" class="py-3 px-4 border border-gray-300 rounded-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="">Choose project client</option>
                             <!-- Add options dynamically here -->
+                        
+                        @foreach ($clients as $client )
+                        <option value="{{ $client->id }}"> {{ $client->name }}
+
+                        </option>
+                        @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('project_client')" class="mt-2" />
                     </div>

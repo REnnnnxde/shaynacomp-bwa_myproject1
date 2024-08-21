@@ -11,9 +11,9 @@ class OurTeam extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'occupation',
         'name',
-        'avatar',
+        'occupation',
         'location', 
+        'avatar', //path
     ];
 }

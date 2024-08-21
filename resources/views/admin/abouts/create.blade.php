@@ -9,8 +9,17 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-10 shadow-lg sm:rounded-lg">
                 
-                <form method="POST" action=" " enctype="multipart/form-data" class="space-y-6"> 
 
+                @if ($errors->any())
+                    @foreach($errors->all() as $error)
+                        <div class="py-3 w-full rounded-3xl bg-red-500 text-white">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
+                
+                <form method="POST" action="{{ route('admin.abouts.store') }} " enctype="multipart/form-data" class="space-y-6"> 
+                @csrf
                     <div>
                         <x-input-label for="name" :value="__('Name')" class="text-gray-700 font-medium" />
                         <x-text-input id="name" class="block mt-2 w-full border border-gray-300 rounded-md p-3 focus:ring-indigo-500 focus:border-indigo-500" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
@@ -39,7 +48,11 @@
 
                     <div class="mt-4">
                         <div class="flex flex-col gap-y-4">
+                            @for ($i = 0; $i < 3; $i++)
                             <input type="text" class="py-3 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Write your keypoint" name="keypoints[]">
+                            
+                            @endfor
+                            
                         </div>
                         <x-input-error :messages="$errors->get('keypoints')" class="mt-2 text-sm text-red-600" />
                     </div>

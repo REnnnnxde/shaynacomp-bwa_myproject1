@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePrincipleRequest;
 use App\Models\OurPrinciple;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class OurPrincipleController extends Controller
@@ -31,9 +33,27 @@ class OurPrincipleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePrincipleRequest $request)
     {
         //
+         // closure-based transaction
+         DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('icon')) {
+                $iconPath = $request->file('icon')->store('icons', 'public');
+                $validated['icon'] = $iconPath; //Storage/icons/icon.png
+            }
+            if ($request->hasFile('thumbnail')) {
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+                $validated['thumbnail'] = $thumbnailPath; //Storage/thumbnails/thumbnail.png
+            }
+
+            OurPrinciple::create($validated);
+        });
+
+        // Redirect ke halaman index
+        return redirect()->route('admin.principles.index');
     }
 
     /**

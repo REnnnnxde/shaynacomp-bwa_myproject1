@@ -13,7 +13,7 @@ class CompanyStatistic extends Model
     protected $fillable = [
         'name',
         'goal',
-        'icon',
+        'icon', // image
         
     ];
 }

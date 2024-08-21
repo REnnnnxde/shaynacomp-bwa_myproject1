@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClientRequest;
 use App\Models\ProjectClient;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProjectClientController extends Controller
@@ -33,9 +35,28 @@ class ProjectClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
         //
+         // closure-based transaction
+         DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('avatar')) {
+                $avatarPath = $request->file('avatar')->store('avatars', 'public');
+                $validated['avatar'] = $avatarPath; //Storage/avatar/avatar.png
+            }
+            if ($request->hasFile('logo')) {
+                $logoPath = $request->file('logo')->store('logos', 'public');
+                $validated['logo'] = $logoPath; //Storage/thumbnails/thumbnail.png
+            }
+                
+            
+            ProjectClient::create($validated);
+        });
+
+        // Redirect ke halaman index
+        return redirect()->route('admin.clients.index');
     }
 
     /**

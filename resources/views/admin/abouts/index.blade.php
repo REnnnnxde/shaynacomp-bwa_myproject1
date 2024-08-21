@@ -4,8 +4,8 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Manage About') }}
             </h2>
-            <a href="{{ route('admin.abouts.create') }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                Add New About
+            <a href="{{ route('admin.clients.create') }}" class="font-bold py-3 px-6 bg-indigo-600 hover:bg-indigo-500 hover:scale-105 text-white rounded-full shadow-md transition duration-300 ease-in-out">
+            Add New About
             </a>
         </div>
     </x-slot>

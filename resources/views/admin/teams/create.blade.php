@@ -9,8 +9,8 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg p-8 space-y-6">
 
-                <form method="POST" action=" " enctype="multipart/form-data">
-
+                <form method="POST" action="{{route('admin.teams.store')}} " enctype="multipart/form-data">
+                @csrf
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block mt-1 w-full py-3 px-4 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />

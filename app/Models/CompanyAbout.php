@@ -11,7 +11,7 @@ class CompanyAbout extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'name',
-        'thumbnail',
+        'thumbnail', //image
         'type',
         
     ];

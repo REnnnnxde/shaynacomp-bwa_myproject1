@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-2xl text-gray-900 leading-tight">
                 {{ __('Manage Teams') }}
             </h2>
-            <a href="{{ route('admin.teams.create') }}" class="font-bold py-3 px-6 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full shadow-md transition duration-300 ease-in-out">
+            <a href="{{ route('admin.teams.create') }}" class="font-bold py-3 px-6 bg-indigo-600 hover:bg-indigo-500 hover:scale-105 text-white rounded-full shadow-md transition duration-300 ease-in-out">
                 Add New Team
             </a>
         </div>
@@ -14,13 +14,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg p-8 space-y-6">
 
+                <!-- Tampilkan pesan sukses jika ada -->
+                @if(session('success'))
+                    <div class="bg-green-500 text-white p-4 rounded-md mb-4">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 @forelse($teams as $team)
                     <div class="flex flex-col md:flex-row justify-between items-center bg-gray-50 p-4 rounded-lg shadow-md">
                         <div class="flex flex-row items-center gap-x-4">
-                            <img src="{{ Storage::url($team->avatar) }}" alt="" class="rounded-full object-cover w-24 h-24">
+                            <img src="{{ Storage::url($team->avatar) }}" alt="{{ $team->name }}" class="rounded-full object-cover w-24 h-24">
                             <div class="flex flex-col">
                                 <h3 class="text-indigo-900 text-xl font-semibold">{{ $team->name }}</h3>
                                 <p class="text-gray-600 text-sm">{{ $team->location }}</p>
+                                <p class="text-gray-600 text-sm">{{ $team->occupation }}</p>
                             </div>
                         </div>
                         <div class="mt-4 md:mt-0 flex gap-x-4">
